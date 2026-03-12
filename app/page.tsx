@@ -1,0 +1,219 @@
+"use client";
+
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Checkbox } from "@/components/ui/checkbox";
+import { itinerary } from "@/data/itinerary";
+import { tips, checklistItems } from "@/data/tips";
+
+function getCurrentActivity() {
+  const now = new Date();
+  const tripDates = [
+    { date: new Date(2025, 3, 17), dayIndex: 0 },
+    { date: new Date(2025, 3, 18), dayIndex: 1 },
+    { date: new Date(2025, 3, 19), dayIndex: 2 },
+    { date: new Date(2025, 3, 20), dayIndex: 3 },
+  ];
+
+  const today = tripDates.find(
+    (d) => d.date.toDateString() === now.toDateString()
+  );
+
+  if (!today) return null;
+
+  const day = itinerary[today.dayIndex];
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentTime = currentHour * 60 + currentMinute;
+
+  let closest = day.activities[0];
+  for (const activity of day.activities) {
+    const [h, m] = activity.time.split(":").map(Number);
+    const actTime = h * 60 + m;
+    if (actTime <= currentTime) {
+      closest = activity;
+    }
+  }
+
+  return { activity: closest, dayIndex: today.dayIndex, day };
+}
+
+export default function HomePage() {
+  const [checklist, setChecklist] = useState<Record<string, boolean>>(() => {
+    if (typeof window === "undefined") return {};
+    const saved = localStorage.getItem("checklist");
+    return saved ? JSON.parse(saved) : {};
+  });
+  const [checklistOpen, setChecklistOpen] = useState(false);
+
+  const currentInfo = getCurrentActivity();
+  const randomTip = useMemo(
+    () => tips[Math.floor(Math.random() * tips.length)],
+    []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("checklist", JSON.stringify(checklist));
+  }, [checklist]);
+
+  const toggleCheck = (id: string) => {
+    setChecklist((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const checkedCount = Object.values(checklist).filter(Boolean).length;
+
+  return (
+    <div className="pb-24">
+      {/* Compact hero */}
+      <section className="relative h-[30vh] min-h-[200px] flex items-end overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1583225173760-4f0ef0740ee5?w=1200&h=800&fit=crop')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 w-full px-6 pb-6"
+        >
+          <p className="text-primary-foreground/70 text-xs font-semibold tracking-widest uppercase mb-1">
+            🌊 Tu escapada
+          </p>
+          <h1 className="font-serif text-3xl font-bold text-primary-foreground leading-tight">
+            A Coruña
+          </h1>
+          <p className="text-primary-foreground/80 text-sm">
+            17 - 20 Abril · 4 días
+          </p>
+        </motion.div>
+      </section>
+
+      {/* "Right now" card */}
+      <section className="px-6 -mt-4 relative z-20">
+        <Card className="border-border/50 shadow-lg">
+          <CardContent className="p-4">
+            {currentInfo ? (
+              <>
+                <p className="text-xs font-semibold text-ocean-light mb-1">📍 Ahora mismo</p>
+                <h3 className="font-serif font-bold text-foreground">{currentInfo.activity.title}</h3>
+                <p className="text-xs text-muted-foreground mt-0.5">{currentInfo.activity.time} · {currentInfo.activity.duration}</p>
+                {currentInfo.activity.placeId && (
+                  <Link
+                    href={`/mapa?focus=${currentInfo.activity.placeId}`}
+                    className="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-ocean-light hover:underline"
+                  >
+                    <MapPin className="h-3 w-3" /> Ver en mapa
+                  </Link>
+                )}
+              </>
+            ) : (
+              <>
+                <p className="text-xs font-semibold text-ocean-light mb-1">✈️ Tu viaje</p>
+                <h3 className="font-serif font-bold text-foreground">
+                  {itinerary[0].day} {itinerary[0].date}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-0.5">{itinerary[0].label}</p>
+                <Link
+                  href="/itinerario"
+                  className="inline-flex items-center gap-1 mt-2 text-xs font-semibold text-ocean-light hover:underline"
+                >
+                  Ver itinerario completo <ArrowRight className="h-3 w-3" />
+                </Link>
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Day strip */}
+      <section className="px-6 mt-6">
+        <h2 className="font-serif text-lg font-bold text-foreground mb-3">Tus 4 días</h2>
+        <div className="grid grid-cols-2 gap-2">
+          {itinerary.map((day, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <Link href={`/itinerario?day=${i}`}>
+                <Card className="border-border/50 hover:shadow-md transition-all hover:border-ocean-light/30">
+                  <CardContent className="p-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{day.emoji}</span>
+                      <div>
+                        <p className="font-serif font-bold text-sm text-foreground">{day.day}</p>
+                        <p className="text-xs text-muted-foreground leading-tight">{day.label}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Checklist */}
+      <section className="px-6 mt-6">
+        <Collapsible open={checklistOpen} onOpenChange={setChecklistOpen}>
+          <CollapsibleTrigger className="w-full">
+            <Card className="border-border/50">
+              <CardContent className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">✅</span>
+                  <div className="text-left">
+                    <p className="font-serif font-bold text-sm text-foreground">Checklist de viaje</p>
+                    <p className="text-xs text-muted-foreground">{checkedCount}/{checklistItems.length} completados</p>
+                  </div>
+                </div>
+                <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${checklistOpen ? "rotate-180" : ""}`} />
+              </CardContent>
+            </Card>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <Card className="border-border/50 border-t-0 rounded-t-none">
+              <CardContent className="p-4 pt-0">
+                <div className="space-y-2">
+                  {checklistItems.map((item) => (
+                    <label
+                      key={item.id}
+                      className="flex items-center gap-3 cursor-pointer py-1"
+                    >
+                      <Checkbox
+                        checked={!!checklist[item.id]}
+                        onCheckedChange={() => toggleCheck(item.id)}
+                      />
+                      <span className={`text-sm ${checklist[item.id] ? "line-through text-muted-foreground" : "text-foreground"}`}>
+                        {item.text}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </CollapsibleContent>
+        </Collapsible>
+      </section>
+
+      {/* Random tip */}
+      <section className="px-6 mt-6">
+        <Card className="bg-primary text-primary-foreground border-0">
+          <CardContent className="p-4">
+            <p className="text-xs font-semibold opacity-80 mb-1">{randomTip.icon} Consejo local</p>
+            <p className="font-serif font-bold text-sm mb-1">{randomTip.title}</p>
+            <p className="text-xs opacity-80">{randomTip.description}</p>
+          </CardContent>
+        </Card>
+      </section>
+    </div>
+  );
+}

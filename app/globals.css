@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 96%;
+    --foreground: 213 56% 24%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 56% 24%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 56% 24%;
+
+    --primary: 213 56% 24%;
+    --primary-foreground: 40 33% 96%;
+
+    --secondary: 40 33% 92%;
+    --secondary-foreground: 213 56% 24%;
+
+    --muted: 40 20% 94%;
+    --muted-foreground: 213 20% 46%;
+
+    --accent: 150 25% 32%;
+    --accent-foreground: 40 33% 96%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 213 56% 24%;
+
+    --radius: 0.75rem;
+
+    --ocean: 213 56% 24%;
+    --ocean-light: 210 45% 40%;
+    --sand: 40 33% 92%;
+    --sand-dark: 35 25% 82%;
+    --moss: 150 25% 32%;
+    --moss-light: 148 20% 45%;
+    --sunset: 25 80% 55%;
+    --wave: 200 60% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  font-family: 'Source Sans 3', sans-serif !important;
+  z-index: 0;
+}
