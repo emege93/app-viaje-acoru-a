@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -51,10 +52,11 @@ export default function HomePage() {
   const [checklistOpen, setChecklistOpen] = useState(false);
 
   const currentInfo = getCurrentActivity();
-  const randomTip = useMemo(
-    () => tips[Math.floor(Math.random() * tips.length)],
-    []
-  );
+  const [randomTip, setRandomTip] = useState(tips[0]);
+
+  useEffect(() => {
+    setRandomTip(tips[Math.floor(Math.random() * tips.length)]);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("checklist", JSON.stringify(checklist));
@@ -69,13 +71,15 @@ export default function HomePage() {
   return (
     <div className="pb-24">
       {/* Compact hero */}
-      <section className="relative h-[30vh] min-h-[200px] flex items-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1583225173760-4f0ef0740ee5?w=1200&h=800&fit=crop')",
-          }}
+      <section className="relative h-[30vh] min-h-[200px] flex items-end overflow-hidden bg-primary">
+        <Image
+          src="https://images.unsplash.com/photo-1698611229501-65577b4d1084?w=1200&h=800&fit=crop"
+          alt="A Coruña"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          onError={(e) => { e.currentTarget.style.display = "none"; }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
         <motion.div
@@ -98,7 +102,7 @@ export default function HomePage() {
 
       {/* "Right now" card */}
       <section className="px-6 -mt-4 relative z-20">
-        <Card className="border-border/50 shadow-lg">
+        <Card className="border-border/50 shadow-lg border-l-4 border-l-wave">
           <CardContent className="p-4">
             {currentInfo ? (
               <>
@@ -137,28 +141,32 @@ export default function HomePage() {
       <section className="px-6 mt-6">
         <h2 className="font-serif text-lg font-bold text-foreground mb-3">Tus 4 días</h2>
         <div className="grid grid-cols-2 gap-2">
-          {itinerary.map((day, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-            >
-              <Link href={`/itinerario?day=${i}`}>
-                <Card className="border-border/50 hover:shadow-md transition-all hover:border-ocean-light/30">
-                  <CardContent className="p-3">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl">{day.emoji}</span>
-                      <div>
-                        <p className="font-serif font-bold text-sm text-foreground">{day.day}</p>
-                        <p className="text-xs text-muted-foreground leading-tight">{day.label}</p>
+          {itinerary.map((day, i) => {
+            const dayAccents = ["border-l-ocean", "border-l-sunset", "border-l-wave", "border-l-moss"];
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <Link href={`/itinerario?day=${i}`}>
+                  <Card className={`border-border/50 hover:shadow-md transition-all hover:border-ocean-light/30 border-l-4 ${dayAccents[i]}`}>
+                    <CardContent className="p-3">
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl mt-0.5">{day.emoji}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-serif font-bold text-sm text-foreground">{day.day}</p>
+                          <p className="text-[11px] text-muted-foreground leading-tight mt-0.5">{day.label}</p>
+                        </div>
+                        <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-1" />
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -206,11 +214,11 @@ export default function HomePage() {
 
       {/* Random tip */}
       <section className="px-6 mt-6">
-        <Card className="bg-primary text-primary-foreground border-0">
-          <CardContent className="p-4">
-            <p className="text-xs font-semibold opacity-80 mb-1">{randomTip.icon} Consejo local</p>
-            <p className="font-serif font-bold text-sm mb-1">{randomTip.title}</p>
-            <p className="text-xs opacity-80">{randomTip.description}</p>
+        <Card className="bg-gradient-to-br from-ocean to-ocean-light text-primary-foreground border-0 shadow-lg">
+          <CardContent className="p-5">
+            <p className="text-xs font-semibold opacity-70 mb-2 tracking-wide uppercase">{randomTip.icon} Consejo local</p>
+            <p className="font-serif font-bold text-base mb-1.5">{randomTip.title}</p>
+            <p className="text-sm opacity-85 leading-relaxed">{randomTip.description}</p>
           </CardContent>
         </Card>
       </section>

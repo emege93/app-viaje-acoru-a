@@ -32,6 +32,7 @@ const colorMap: Record<string, string> = {
   bar: "#a855f7",
   museo: "#e11d48",
   excursion: "#ca8a04",
+  venue: "#7c3aed",
 };
 
 function createIcon(category: string) {
@@ -45,7 +46,7 @@ function createIcon(category: string) {
 }
 
 const categories: (PlaceCategory | "all")[] = [
-  "all", "monumento", "playa", "mirador", "restaurante", "bar", "museo", "excursion",
+  "all", "monumento", "playa", "mirador", "restaurante", "bar", "museo", "venue", "excursion",
 ];
 
 function MapController({ focusPlace, filter }: { focusPlace: Place | null; filter: string }) {

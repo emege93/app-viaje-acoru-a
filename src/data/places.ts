@@ -1,4 +1,4 @@
-export type PlaceCategory = "monumento" | "playa" | "mirador" | "restaurante" | "bar" | "museo" | "excursion";
+export type PlaceCategory = "monumento" | "playa" | "mirador" | "restaurante" | "bar" | "museo" | "excursion" | "venue";
 
 export type PlaceArea = "coruna" | "santiago" | "costa-da-morte";
 
@@ -13,6 +13,7 @@ export interface Place {
   image: string;
   duration?: string;
   area?: PlaceArea;
+  tags?: string[];
 }
 
 export const places: Place[] = [
@@ -25,7 +26,7 @@ export const places: Place[] = [
     tip: "Sube a lo alto al atardecer para unas vistas espectaculares. La entrada cuesta unos 3€.",
     lat: 43.3862,
     lng: -8.4064,
-    image: "https://images.unsplash.com/photo-1583225173760-4f0ef0740ee5?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1698611229501-65577b4d1084?w=600&h=400&fit=crop",
     duration: "1-2h",
     area: "coruna",
   },
@@ -37,7 +38,7 @@ export const places: Place[] = [
     tip: "Piérdete por las callejuelas sin mapa. Cada esquina tiene una sorpresa.",
     lat: 43.3713,
     lng: -8.3962,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1561632669-7f55f7975606?w=600&h=400&fit=crop",
     duration: "2-3h",
     area: "coruna",
   },
@@ -126,6 +127,7 @@ export const places: Place[] = [
     lng: -8.3965,
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Favorito local ✨", "Cocina gallega"],
   },
   {
     id: "meson-do-pulpo",
@@ -137,6 +139,7 @@ export const places: Place[] = [
     lng: -8.3950,
     image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Cocina gallega"],
   },
   {
     id: "a-penela",
@@ -148,6 +151,7 @@ export const places: Place[] = [
     lng: -8.3975,
     image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Cocina gallega", "Marisco"],
   },
   {
     id: "taberna-galera",
@@ -159,6 +163,7 @@ export const places: Place[] = [
     lng: -8.3955,
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Tortilla", "Cocina gallega"],
   },
   {
     id: "taberna-cunqueiro",
@@ -168,8 +173,9 @@ export const places: Place[] = [
     tip: "El pulpo á feira es su especialidad. Acompáñalo con un Ribeiro y disfruta del ambiente de la calle.",
     lat: 43.3706,
     lng: -8.3958,
-    image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Cocina gallega"],
   },
   {
     id: "thai-bangkok",
@@ -181,6 +187,7 @@ export const places: Place[] = [
     lng: -8.3960,
     image: "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Internacional"],
   },
   {
     id: "meson-serrano",
@@ -190,8 +197,9 @@ export const places: Place[] = [
     tip: "Pide el pulpo y las croquetas caseras. Sitio de toda la vida, frecuentado por locales.",
     lat: 43.3700,
     lng: -8.3955,
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop",
     area: "coruna",
+    tags: ["Cocina gallega"],
   },
   // Bares
   {
@@ -242,6 +250,117 @@ export const places: Place[] = [
     duration: "1-2h",
     area: "coruna",
   },
+  // Nuevos restaurantes recomendados
+  {
+    id: "comarea",
+    name: "Comarea",
+    category: "restaurante",
+    description: "Vistas espectaculares al mar y comida muy muy rica. Uno de los mejores sitios de la ciudad, perfecto para comer y disfrutar de las vistas.",
+    tip: "Mejor ir a comer que a cenar para disfrutar de las vistas. Presupuesto ~50€ por persona. Cerca del Castillo de San Antón.",
+    lat: 43.3680,
+    lng: -8.3830,
+    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Favorito local ✨", "Vistas al mar"],
+  },
+  {
+    id: "a-tira-do-playa",
+    name: "A Tira do Playa",
+    category: "restaurante",
+    description: "Vistas a toda la bahía de Riazor y la playa. Ideal para un desayuno o comida tranquila frente al mar.",
+    tip: "Perfecto para desayunar o comer con vistas. Si estás cerca de Riazor, es una parada obligatoria.",
+    lat: 43.3660,
+    lng: -8.4110,
+    image: "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Vistas al mar", "Ideal desayuno"],
+  },
+  {
+    id: "a-pulpeira-de-melide",
+    name: "A Pulpeira de Melide",
+    category: "restaurante",
+    description: "Referencia gallega para pulpo á feira. Sencillo, directo y siempre cumple. Pulpo auténtico sin pretensiones.",
+    tip: "No necesita presentación. Pulpo fiable, rápido y auténtico.",
+    lat: 43.3705,
+    lng: -8.3945,
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Cocina gallega"],
+  },
+  {
+    id: "a-nova-lanchina",
+    name: "A Nova Lanchiña",
+    category: "restaurante",
+    description: "Pulpo y comida tradicional gallega muy rica. Local, sin pretensiones, con sabor de siempre.",
+    tip: "Solo merece la pena si os queda cerca del alojamiento. Si estáis por la zona, el pulpo es fantástico.",
+    lat: 43.3650,
+    lng: -8.3920,
+    image: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Cocina gallega"],
+  },
+  {
+    id: "o-fado",
+    name: "O Fado",
+    category: "restaurante",
+    description: "Si os gustan los arroces, este es vuestro sitio. Comida casera, sin florituras, pero muy rica.",
+    tip: "El arroz es su especialidad. Sitio casero y de confianza.",
+    lat: 43.3700,
+    lng: -8.3940,
+    image: "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Arroces"],
+  },
+  {
+    id: "o-cabo",
+    name: "O Cabo",
+    category: "restaurante",
+    description: "Referencia para tortilla en A Coruña. Sencillo, directo y especialistas en tortilla de Betanzos.",
+    tip: "Si te gusta la tortilla de Betanzos, este es tu sitio. Jugosa por dentro, perfecta por fuera.",
+    lat: 43.3710,
+    lng: -8.3952,
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Favorito local ✨", "Tortilla"],
+  },
+  // Zona de tapeo centro
+  {
+    id: "zona-tapeo-centro",
+    name: "Calles Olmos, Barrera y Galera",
+    category: "bar",
+    description: "El corazón del tapeo en el centro de Coruña. Tres calles llenas de bares donde se come muy rico. El pleno centro con un montón de sitios.",
+    tip: "Algunos favoritos: OlaBar, TapaNegra, La Bombilla. Ve de bar en bar como hacen los locales.",
+    lat: 43.3705,
+    lng: -8.3950,
+    image: "https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=600&h=400&fit=crop",
+    area: "coruna",
+    tags: ["Zona de tapeo"],
+  },
+  // Venues
+  {
+    id: "coliseum",
+    name: "Coliseum A Coruña",
+    category: "venue",
+    description: "El principal recinto de conciertos y eventos de A Coruña. Con capacidad para miles de personas, acoge los grandes eventos de la ciudad.",
+    tip: "Llega con tiempo, sobre todo si hay colas. La zona tiene aparcamiento cercano.",
+    lat: 43.3620,
+    lng: -8.4110,
+    image: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&h=400&fit=crop",
+    area: "coruna",
+  },
+  // Nuevos museos/cultura
+  {
+    id: "fundacion-marta-ortega",
+    name: "Fundación Marta Ortega",
+    category: "museo",
+    description: "Exposición fotográfica y espacio cultural. Arte contemporáneo en A Coruña que merece mucho la pena.",
+    tip: "Consulta horarios y la exposición actual antes de ir. Una parada cultural imprescindible.",
+    lat: 43.3690,
+    lng: -8.3870,
+    image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&h=400&fit=crop",
+    duration: "1-2h",
+    area: "coruna",
+  },
   // Santiago de Compostela
   {
     id: "catedral-santiago",
@@ -251,7 +370,7 @@ export const places: Place[] = [
     tip: "La entrada es gratis. Las cubiertas (de pago) ofrecen vistas únicas. Reserva online.",
     lat: 42.8805,
     lng: -8.5448,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=400&fit=crop",
     duration: "1.5h",
     area: "santiago",
   },
@@ -263,7 +382,7 @@ export const places: Place[] = [
     tip: "Prueba los pimientos de Padrón y el pulpo. Los precios son buenos para ser zona turística.",
     lat: 42.8790,
     lng: -8.5440,
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1555992336-03a23c7b20ee?w=600&h=400&fit=crop",
     area: "santiago",
   },
   {
@@ -274,7 +393,7 @@ export const places: Place[] = [
     tip: "Compra percebes o zamburiñas en un puesto y llévalos al bar del mercado para que te los cocinen.",
     lat: 42.8782,
     lng: -8.5425,
-    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&h=400&fit=crop",
     duration: "1.5h",
     area: "santiago",
   },
@@ -286,7 +405,7 @@ export const places: Place[] = [
     tip: "Busca la estatua de las Dos Marías, personajes míticos de Santiago.",
     lat: 42.8770,
     lng: -8.5480,
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&h=400&fit=crop",
     duration: "1h",
     area: "santiago",
   },
@@ -298,7 +417,7 @@ export const places: Place[] = [
     tip: "Al atardecer, la luz sobre la piedra es mágica. Busca la Puerta Santa de la Catedral.",
     lat: 42.8800,
     lng: -8.5435,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=400&fit=crop",
     duration: "30min",
     area: "santiago",
   },
@@ -312,6 +431,7 @@ export const categoryLabels: Record<PlaceCategory, string> = {
   bar: "🍺 Bares",
   museo: "🎨 Museos",
   excursion: "🚗 Excursión",
+  venue: "🎶 Eventos",
 };
 
 export const categoryIcons: Record<PlaceCategory, string> = {
@@ -322,4 +442,16 @@ export const categoryIcons: Record<PlaceCategory, string> = {
   bar: "🍺",
   museo: "🎨",
   excursion: "🚗",
+  venue: "🎶",
+};
+
+export const categoryColors: Record<PlaceCategory, { bg: string; text: string; border: string; bgLight: string; borderL: string; badgeBg: string }> = {
+  monumento: { bg: "bg-ocean", text: "text-ocean", border: "border-ocean/30", bgLight: "bg-ocean/10", borderL: "border-l-ocean", badgeBg: "bg-ocean/90 text-white" },
+  playa: { bg: "bg-wave", text: "text-wave", border: "border-wave/30", bgLight: "bg-wave/10", borderL: "border-l-wave", badgeBg: "bg-wave/90 text-white" },
+  mirador: { bg: "bg-moss", text: "text-moss", border: "border-moss/30", bgLight: "bg-moss/10", borderL: "border-l-moss", badgeBg: "bg-moss/90 text-white" },
+  restaurante: { bg: "bg-sunset", text: "text-sunset", border: "border-sunset/30", bgLight: "bg-sunset/10", borderL: "border-l-sunset", badgeBg: "bg-sunset/90 text-white" },
+  bar: { bg: "bg-sunset", text: "text-sunset", border: "border-sunset/30", bgLight: "bg-sunset/10", borderL: "border-l-sunset", badgeBg: "bg-sunset/90 text-white" },
+  museo: { bg: "bg-ocean-light", text: "text-ocean-light", border: "border-ocean-light/30", bgLight: "bg-ocean-light/10", borderL: "border-l-ocean-light", badgeBg: "bg-ocean-light/90 text-white" },
+  excursion: { bg: "bg-moss-light", text: "text-moss-light", border: "border-moss-light/30", bgLight: "bg-moss-light/10", borderL: "border-l-moss-light", badgeBg: "bg-moss-light/90 text-white" },
+  venue: { bg: "bg-ocean", text: "text-ocean", border: "border-ocean/30", bgLight: "bg-ocean/10", borderL: "border-l-ocean", badgeBg: "bg-ocean/90 text-white" },
 };

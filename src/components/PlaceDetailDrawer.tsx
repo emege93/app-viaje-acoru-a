@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { categoryLabels, type Place } from "@/data/places";
 import { itinerary } from "@/data/itinerary";
+import PlaceImage from "@/components/PlaceImage";
 
 interface PlaceDetailDrawerProps {
   place: Place | null;
@@ -35,11 +36,7 @@ export default function PlaceDetailDrawer({ place, open, onClose }: PlaceDetailD
     <Drawer open={open} onOpenChange={(o) => !o && onClose()}>
       <DrawerContent className="max-h-[85vh]">
         <div className="overflow-y-auto">
-          <img
-            src={place.image}
-            alt={place.name}
-            className="w-full h-44 object-cover"
-          />
+          <PlaceImage src={place.image} alt={place.name} category={place.category} />
           <DrawerHeader className="text-left">
             <div className="flex items-center gap-2 mb-1">
               <Badge variant="secondary" className="text-xs">
@@ -58,14 +55,14 @@ export default function PlaceDetailDrawer({ place, open, onClose }: PlaceDetailD
           </DrawerHeader>
 
           <div className="px-4 pb-6 space-y-3">
-            <div className="bg-sand/60 rounded-lg p-3">
-              <p className="text-xs font-semibold text-foreground mb-1">💡 Consejo local</p>
-              <p className="text-xs text-muted-foreground">{place.tip}</p>
+            <div className="bg-sand/60 border border-sand-dark/20 rounded-lg p-3">
+              <p className="text-xs font-semibold text-foreground mb-0.5">💡 Consejo local</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{place.tip}</p>
             </div>
 
             {itineraryInfo && (
-              <div className="bg-ocean/10 rounded-lg p-3">
-                <p className="text-xs font-semibold text-foreground mb-1">📅 En tu itinerario</p>
+              <div className="bg-ocean/10 border border-ocean/20 rounded-lg p-3">
+                <p className="text-xs font-semibold text-foreground mb-0.5">📅 En tu itinerario</p>
                 <p className="text-xs text-muted-foreground">
                   {itineraryInfo.day} {itineraryInfo.date} · {itineraryInfo.time}
                 </p>
