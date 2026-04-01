@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image" },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -23,8 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#171c24" media="(prefers-color-scheme: dark)" />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var d=document.documentElement;var m=window.matchMedia('(prefers-color-scheme: dark)');function t(e){d.classList.toggle('dark',e.matches)}t(m);m.addEventListener('change',t)}catch(e){}})()` }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

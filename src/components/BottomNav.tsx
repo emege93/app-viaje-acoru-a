@@ -36,7 +36,7 @@ export default function BottomNav() {
               }`}>
                 <tab.icon className={`h-5 w-5 ${isActive ? "stroke-[2.5]" : ""}`} />
               </div>
-              <span className={`text-[10px] ${isActive ? "font-bold" : "font-medium"}`}>
+              <span className={`text-[11px] ${isActive ? "font-bold" : "font-medium"}`}>
                 {tab.label}
               </span>
             </Link>

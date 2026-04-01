@@ -43,6 +43,45 @@
     --sunset: 25 80% 55%;
     --wave: 200 60% 50%;
   }
+
+  .dark {
+    --background: 220 20% 10%;
+    --foreground: 40 25% 90%;
+
+    --card: 220 15% 14%;
+    --card-foreground: 40 25% 90%;
+
+    --popover: 220 15% 14%;
+    --popover-foreground: 40 25% 90%;
+
+    --primary: 40 25% 90%;
+    --primary-foreground: 220 20% 10%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 25% 85%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 150 25% 42%;
+    --accent-foreground: 40 25% 90%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 210 45% 50%;
+
+    --ocean: 210 45% 50%;
+    --ocean-light: 210 50% 60%;
+    --sand: 40 15% 20%;
+    --sand-dark: 35 12% 25%;
+    --moss: 150 25% 42%;
+    --moss-light: 148 22% 52%;
+    --sunset: 25 80% 60%;
+    --wave: 200 60% 55%;
+  }
 }
 
 @layer base {

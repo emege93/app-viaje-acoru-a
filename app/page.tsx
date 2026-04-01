@@ -14,10 +14,10 @@ import { tips, checklistItems } from "@/data/tips";
 function getCurrentActivity() {
   const now = new Date();
   const tripDates = [
-    { date: new Date(2025, 3, 17), dayIndex: 0 },
-    { date: new Date(2025, 3, 18), dayIndex: 1 },
-    { date: new Date(2025, 3, 19), dayIndex: 2 },
-    { date: new Date(2025, 3, 20), dayIndex: 3 },
+    { date: new Date(2026, 3, 17), dayIndex: 0 },
+    { date: new Date(2026, 3, 18), dayIndex: 1 },
+    { date: new Date(2026, 3, 19), dayIndex: 2 },
+    { date: new Date(2026, 3, 20), dayIndex: 3 },
   ];
 
   const today = tripDates.find(
@@ -31,16 +31,19 @@ function getCurrentActivity() {
   const currentMinute = now.getMinutes();
   const currentTime = currentHour * 60 + currentMinute;
 
-  let closest = day.activities[0];
-  for (const activity of day.activities) {
-    const [h, m] = activity.time.split(":").map(Number);
+  let closestIdx = 0;
+  for (let i = 0; i < day.activities.length; i++) {
+    const [h, m] = day.activities[i].time.split(":").map(Number);
     const actTime = h * 60 + m;
     if (actTime <= currentTime) {
-      closest = activity;
+      closestIdx = i;
     }
   }
 
-  return { activity: closest, dayIndex: today.dayIndex, day };
+  const closest = day.activities[closestIdx];
+  const nextActivity = closestIdx < day.activities.length - 1 ? day.activities[closestIdx + 1] : null;
+
+  return { activity: closest, nextActivity, dayIndex: today.dayIndex, day };
 }
 
 export default function HomePage() {
@@ -116,6 +119,11 @@ export default function HomePage() {
                   >
                     <MapPin className="h-3 w-3" /> Ver en mapa
                   </Link>
+                )}
+                {currentInfo.nextActivity && (
+                  <p className="text-xs text-muted-foreground mt-1.5 pt-1.5 border-t border-border/50">
+                    Siguiente: {currentInfo.nextActivity.time} — {currentInfo.nextActivity.title}
+                  </p>
                 )}
               </>
             ) : (
