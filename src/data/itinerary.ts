@@ -165,7 +165,7 @@ export const itinerary: DayPlan[] = [
         description: "Café de especialidad en Rúa Nova 28, junto al Obelisco en pleno centro. Tortilla casera divina, bizcochos artesanos (naranja, chocolate, dulce de leche) y café excelente.",
         duration: "45min",
         why: "Ya lo conocéis del viernes y funciona. Café de especialidad, tortilla casera, local de verdad. Retrasado 30min porque anoche fue la primera noche de tapeo.",
-        tip: "Horario sábado: 9:00-22:00. Si eres de dulce, los bizcochos caseros son espectaculares. Si prefieres salado, la tortilla de patata no falla.",
+        tip: "Horario sábado: 9:00-22:00. Alternativa: Ingooco (brunch creativo, tostada 'Frida Kahlo', Rúa Padre Feijoo 6, sáb desde 9:00).",
         icon: "☕",
       },
       {
@@ -279,11 +279,11 @@ export const itinerary: DayPlan[] = [
       {
         id: "d1",
         time: "09:30",
-        title: "Desayuno en Siboney",
-        description: "Café de especialidad en Rúa Nova 28, junto al Obelisco en pleno centro. Tortilla casera divina, bizcochos artesanos (naranja, chocolate, dulce de leche) y café excelente.",
+        title: "Desayuno en Waco Coffee",
+        description: "Café de especialidad y desayunos cuidados en Rua Alameda 22. Todo orgánico, local y de proximidad. Huevos benedictine con salmón ahumado y salsa holandesa, zumos naturales. Pedido en barra.",
         duration: "45min",
-        why: "Sitio fiable que ya conocéis. Retrasado 30min porque anoche fue noche de concierto.",
-        tip: "Horario domingo: 9:00-22:00. Después del desayuno, id directos a la playa de Riazor para empezar la ruta costera.",
+        why: "Siboney cierra los domingos. Waco es la mejor opción para café de calidad con un desayuno completo y bien hecho. Retrasado 30min porque anoche fue noche de concierto.",
+        tip: "Cocina abierta dom desde 9:30. Pedido en barra. Alternativa: Ingooco (brunch creativo, Rúa Padre Feijoo 6, dom desde 9:00) o Pandelino (Rúa Rosalía de Castro 7, dom desde 9:00).",
         icon: "☕",
       },
       {
