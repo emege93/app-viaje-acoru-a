@@ -178,6 +178,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gastro link */}
+      <section className="px-6 mt-6">
+        <Link href="/gastronomia">
+          <Card className="border-border/50 shadow-md hover:shadow-lg transition-all border-l-4 border-l-sunset bg-gradient-to-r from-card to-sunset/5">
+            <CardContent className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🦞</span>
+                <div>
+                  <p className="font-serif font-bold text-sm text-foreground">Guía Gastronómica</p>
+                  <p className="text-xs text-muted-foreground">Mariscos, tapas, vinos y secretos de mesa</p>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-sunset shrink-0" />
+            </CardContent>
+          </Card>
+        </Link>
+      </section>
+
+      {/* Budget link */}
+      <section className="px-6 mt-4">
+        <Link href="/presupuesto">
+          <Card className="border-border/50 shadow-md hover:shadow-lg transition-all border-l-4 border-l-moss bg-gradient-to-r from-card to-moss/5">
+            <CardContent className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">💰</span>
+                <div>
+                  <p className="font-serif font-bold text-sm text-foreground">Presupuesto</p>
+                  <p className="text-xs text-muted-foreground">Estimación de gastos por persona</p>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-moss shrink-0" />
+            </CardContent>
+          </Card>
+        </Link>
+      </section>
+
       {/* Checklist */}
       <section className="px-6 mt-6">
         <Collapsible open={checklistOpen} onOpenChange={setChecklistOpen}>

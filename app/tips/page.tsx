@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { checklistItems } from "@/data/tips";
@@ -120,6 +122,24 @@ export default function GuidePage() {
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Gastro link */}
+      <div className="px-6 pt-6">
+        <Link href="/gastronomia">
+          <Card className="border-border/50 shadow-md hover:shadow-lg transition-all border-l-4 border-l-sunset bg-gradient-to-r from-card to-sunset/5">
+            <CardContent className="p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🦞</span>
+                <div>
+                  <p className="font-serif font-bold text-sm text-foreground">Guía Gastronómica</p>
+                  <p className="text-xs text-muted-foreground">Mariscos, tapas, vinos y secretos de mesa</p>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-sunset shrink-0" />
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {/* Guide sections */}

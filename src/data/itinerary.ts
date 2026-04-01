@@ -205,13 +205,13 @@ export const itinerary: DayPlan[] = [
       {
         id: "s5",
         time: "14:00",
-        title: "Comida en Comarea Marina",
-        description: "R. La Torre 93, frente a la Dársena deportiva. Terraza con vistas al mar. Selección Michelin. Especialidad en arroces, pescado fresco y marisco. Precio medio ~40-50€/persona.",
+        title: "Comida en O Fado",
+        description: "Restaurante casero especializado en arroces. Comida gallega sin florituras pero muy rica. Arroz caldoso, arroz marinero, pescado del día. Precio medio ~20-25€/persona. Recomendación de un gallego.",
         duration: "1.5h",
-        why: "Vistas espectaculares al puerto y comida de nivel. Uno de los mejores restaurantes de la ciudad, reconocido por la Guía Michelin.",
-        tip: "Mejor ir a comer que a cenar para disfrutar de las vistas. Reservar recomendado (fin de semana se llena). Terraza imprescindible si hace buen tiempo.",
+        why: "Arroces caseros de calidad a buen precio. Recomendación directa de un coruñés. Mucho más asequible que Comarea y con experiencia auténtica.",
+        tip: "El arroz caldoso o marinero es su especialidad. Sitio casero, de confianza. Alternativa premium: Comarea Marina (selección Michelin, ~40-50€/pp, vistas al mar, reservar).",
         icon: "🍽",
-        placeId: "comarea",
+        placeId: "o-fado",
       },
       {
         id: "s6",
